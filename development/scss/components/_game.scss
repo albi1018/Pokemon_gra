@@ -10,18 +10,26 @@
   color: #fe9441;
 }
 
-.images {
+.pokemons {
   display: flex;
-  justify-content: center;
   align-items: center;
   flex-direction: column;
   max-width: 340px;
-  .img {
-    width: 100%;
+  margin-top: 3rem;
+  .figure {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 2rem;
+    .img {
+      width: 100%;
+      padding: 2rem 2rem;
+    }
+    .figcaption {
+      font-size: 5rem;
+      font-family: 'DotGothic16', sans-serif;
+    }
   }
-  .figcaption {
-    font-size: 5rem;
-    font-family: 'DotGothic16', sans-serif;
-  }
-  
+
+
 }
