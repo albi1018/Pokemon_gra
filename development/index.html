@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Gra Pokemon</title>
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=DotGothic16&family=Roboto:wght@400;700;900&display=swap"
@@ -10,27 +11,42 @@
 </head>
 <body>
 <div class="container">
-    <h1 class="game__title container">Gra Pokemon</h1>
-<section class="pokemons">
-    <figure class="figure">
-        <img class="img" src="images/charmander.png"
-             alt="charmander">
-        <figcaption class="figcaption">Charmander</figcaption>
-    </figure>
-    <figure class="figure">
-        <img class="img" src="images/squirtle.png"
-             alt="squirtle">
-        <figcaption class="figcaption">Squirtle</figcaption>
-    </figure>
-    <figure class="figure" data-o>
-        <img class="img" src="images/bulbasaur.png"
-             alt="bulbasaur">
-        <figcaption class="figcaption">Bulbasaur</figcaption>
-    </figure>
+    <h1 class="game__title">Pokemon Game</h1>
+    <h2 class="choose">Choose your pokemon</h2>
+    <section class="pokemons">
+        <figure class="figure" data-option="charmander">
+            <img class="img" src="images/charmander.png"
+                 alt="charmander">
+            <figcaption class="figcaption">Charmander</figcaption>
+        </figure>
+        <figure class="figure" data-option="squirtle">
+            <img class="img" src="images/squirtle.png"
+                 alt="squirtle">
+            <figcaption class="figcaption">Squirtle</figcaption>
+        </figure>
+        <figure class="figure" data-option="bulbasaur">
+            <img class="img" src="images/bulbasaur.png"
+                 alt="bulbasaur">
+            <figcaption class="figcaption">Bulbasaur</figcaption>
+        </figure>
+    </section>
+
+    <button class="start">Play!</button>
+</div>
+<section class="info">
+    <div class="left__panel">
+        <p data-sumary="your-choice">Twój wybór: <span></span></p>
+        <p data-sumary="ai-choice">Wybór rywala: <span></span></p>
+        <p data-sumary="who-win">Wynik: <span></span></p>
+    </div>
+    <div class="right__panel">
+        <p data-sumary="number-games">Liczba gier: <span></span></p>
+        <p data-sumary="number-wins">Zwycięstwa: <span></span></p>
+        <p data-sumary="number-draws">Remisy: <span></span></p>
+        <p data-sumary="number-losses">Porażki: <span></span></p>
+    </div>
 
 </section>
-
-</div>
 <script src="js/app.js"></script>
 </body>
 </html>
