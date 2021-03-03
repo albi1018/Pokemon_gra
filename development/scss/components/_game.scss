@@ -21,8 +21,11 @@
   display: flex;
   align-items: center;
   flex-direction: column;
-  //max-width: 340px;
   margin-top: 1rem;
+  @media (min-width: 600px) {
+    flex-direction: row;
+  }
+
   .figure {
     display: flex;
     align-items: center;
@@ -31,6 +34,9 @@
     .img {
       width: 35%;
       padding: 1rem 1rem;
+      @media (orientation: landscape) and (min-width: 800px) {
+        width: 50%;
+      }
     }
     .figcaption {
       font-size: 1.5rem;
