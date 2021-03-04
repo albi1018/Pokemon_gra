@@ -12,9 +12,12 @@ const game = {
     aiChoice: "",
 }
 
-pokemons.forEach(pokemon => {
-    pokemon.addEventListener("click",() => {
-        game.playerChoice = pokemon.dataset.option
-        console.log(game.playerChoice);
-    })
-})
+function pokemonSelection () {
+    game.playerChoice = this.dataset.option
+    
+}
+
+
+
+pokemons.forEach(pokemon => pokemon.addEventListener("click", pokemonSelection));
+
