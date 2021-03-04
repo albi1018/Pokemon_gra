@@ -16,6 +16,7 @@
   font-weight: bold;
   text-align: center;
   margin-top: 2rem;
+  margin-bottom: 1rem;
   @media (min-width: 1024px) {
     font-size: 4rem;
   }
@@ -43,6 +44,7 @@
     flex-direction: column;
     margin-bottom: 1rem;
     cursor: pointer;
+    padding: 0 0 1rem 0;
 
     .img {
       width: 35%;

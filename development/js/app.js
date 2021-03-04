@@ -14,7 +14,14 @@ const game = {
 
 function pokemonSelection () {
     game.playerChoice = this.dataset.option
-    
+    pokemons.forEach(pokemon => pokemon.style.boxShadow = "");
+    if (game.playerChoice === "charmander") {
+        this.style.boxShadow = "0 0 0 4px #fe9441"
+    } else if (game.playerChoice === "squirtle") {
+        this.style.boxShadow = "0 0 0 4px #93c8d0"
+    } else {
+        this.style.boxShadow = "0 0 0 4px #89C893"
+    }
 }
 
 
