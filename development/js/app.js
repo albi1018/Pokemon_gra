@@ -13,11 +13,9 @@ const game = {
     aiChoice: "",
 }
 
-let result;
 
 function pokemonSelection() {
     game.playerChoice = this.dataset.option
-    console.log(game.playerChoice);
     pokemons.forEach(pokemon => pokemon.style.boxShadow = "");
     if (game.playerChoice === "charmander") {
         this.style.boxShadow = "0 0 0 4px #fe9441"
@@ -37,29 +35,62 @@ function aiSelection() {
     } else {
         game.aiChoice = "bulbasaur"
     }
-    console.log(game.aiChoice);
     return game.aiChoice
 }
 
 function playerVsAi(player, ai) {
+    let result;
     if (player === "charmander" && ai === "bulbasaur" || player === "bulbasaur" && ai === "squirtle"
         || player === "squirtle" && ai === "charmander") {
-        console.log("wygrałeś!");
-    } else if (player === "bulbasaur" && ai === "charmander" || player === "squirtle" && ai === "bulbasaur"
-        || player === "charmander" && ai === "squirtle") {
-        console.log("przegrałeś!")
-        } else {
-    console.log("remis!");}
+        result = "Win!";
+        return result
+    } else if (player === ai) {
+        result = "Draw!";
+        return result
+    } else {
+        result = "Loose!";
+        return result;
+    }
+
 }
 
+function scoreShow(player, ai, result, whoWin) {
+    const yourChoice =
+        document.querySelector("[data-sumary=your-choice] span").textContent = player.toUpperCase();
+    const aiChoice =
+        document.querySelector("[data-sumary=ai-choice] span").textContent = ai.toUpperCase();
+    const numberGames =
+        document.querySelector("[data-sumary=number-games] span").textContent = gameScore.numberOfGames;
+    if (result === "Win!") {
+        whoWin.textContent = "Victory".toUpperCase();
+        whoWin.style.color = "green";
+        gameScore.wins ++;
+        document.querySelector("[data-sumary=number-wins] span").textContent = gameScore.wins;
+    } else if (result === "Loose!") {
+        whoWin.textContent = "Defeat".toUpperCase();
+        whoWin.style.color = "red";
+        gameScore.losses ++;
+        document.querySelector("[data-sumary=number-losses] span").textContent = gameScore.losses
+    } else {
+        whoWin.textContent = "Draw!".toUpperCase();
+        whoWin.style.color = "gray";
+        gameScore.draws ++;
+        document.querySelector("[data-sumary=number-draws] span").textContent = gameScore.draws
+    }
+}
+
+
 function start() {
+    gameScore.numberOfGames ++;
+    const whoWin = document.querySelector("[data-sumary=who-win] span");
     if (game.playerChoice === "") {
         return alert("Wybierz pokemona!")
     }
     aiSelection();
     playerVsAi(game.playerChoice, game.aiChoice)
+    let result = playerVsAi(game.playerChoice, game.aiChoice);
+    scoreShow(game.playerChoice, game.aiChoice, result, whoWin);
 }
-
 
 
 btn.addEventListener("click", start);
