@@ -9,17 +9,17 @@ const gameScore = {
 }
 
 const game = {
-    playerChoice: "",
-    aiChoice: "",
+    playerPokemon: "",
+    aiPokemon: "",
 }
 
 
 function pokemonSelection() {
-    game.playerChoice = this.dataset.option
+    game.playerPokemon = this.dataset.option
     pokemons.forEach(pokemon => pokemon.style.boxShadow = "");
-    if (game.playerChoice === "charmander") {
+    if (game.playerPokemon === "charmander") {
         this.style.boxShadow = "0 0 0 4px #fe9441"
-    } else if (game.playerChoice === "squirtle") {
+    } else if (game.playerPokemon === "squirtle") {
         this.style.boxShadow = "0 0 0 4px #93c8d0"
     } else {
         this.style.boxShadow = "0 0 0 4px #89C893"
@@ -27,69 +27,68 @@ function pokemonSelection() {
 }
 
 function aiSelection() {
-    game.aiChoice = Math.floor(Math.random() * 3 + 1)
-    if (game.aiChoice === 1) {
-        game.aiChoice = "charmander";
-    } else if (game.aiChoice === 2) {
-        game.aiChoice = "squirtle"
+    game.aiPokemon = Math.floor(Math.random() * 3 + 1)
+    if (game.aiPokemon === 1) {
+        game.aiPokemon = "charmander";
+    } else if (game.aiPokemon === 2) {
+        game.aiPokemon = "squirtle"
     } else {
-        game.aiChoice = "bulbasaur"
+        game.aiPokemon = "bulbasaur"
     }
-    return game.aiChoice
+    return game.aiPokemon
 }
 
 function playerVsAi(player, ai) {
     let result;
     if (player === "charmander" && ai === "bulbasaur" || player === "bulbasaur" && ai === "squirtle"
         || player === "squirtle" && ai === "charmander") {
-        result = "Win!";
-        return result
+        return "win"
     } else if (player === ai) {
-        result = "Draw!";
-        return result
+        return "draw"
     } else {
-        result = "Loose!";
-        return result;
+        return "lose"
     }
 
 }
 
 function scoreShow(player, ai, result, whoWin) {
-    const yourChoice =
         document.querySelector("[data-sumary=your-choice] span").textContent = player.toUpperCase();
-    const aiChoice =
         document.querySelector("[data-sumary=ai-choice] span").textContent = ai.toUpperCase();
-    const numberGames =
         document.querySelector("[data-sumary=number-games] span").textContent = gameScore.numberOfGames;
-    if (result === "Win!") {
+    if (result === "win") {
         whoWin.textContent = "Victory".toUpperCase();
         whoWin.style.color = "green";
         gameScore.wins ++;
         document.querySelector("[data-sumary=number-wins] span").textContent = gameScore.wins;
-    } else if (result === "Loose!") {
+    } else if (result === "lose") {
         whoWin.textContent = "Defeat".toUpperCase();
         whoWin.style.color = "red";
         gameScore.losses ++;
         document.querySelector("[data-sumary=number-losses] span").textContent = gameScore.losses
     } else {
-        whoWin.textContent = "Draw!".toUpperCase();
+        whoWin.textContent = "draw".toUpperCase();
         whoWin.style.color = "gray";
         gameScore.draws ++;
         document.querySelector("[data-sumary=number-draws] span").textContent = gameScore.draws
     }
 }
 
+function endGame () {
+    pokemons.forEach(pokemon => pokemon.style.boxShadow = "");
+    game.playerPokemon = "";
+}
 
 function start() {
     gameScore.numberOfGames ++;
     const whoWin = document.querySelector("[data-sumary=who-win] span");
-    if (game.playerChoice === "") {
+    if (game.playerPokemon === "") {
         return alert("Wybierz pokemona!")
     }
     aiSelection();
-    playerVsAi(game.playerChoice, game.aiChoice)
-    let result = playerVsAi(game.playerChoice, game.aiChoice);
-    scoreShow(game.playerChoice, game.aiChoice, result, whoWin);
+    playerVsAi(game.playerPokemon, game.aiPokemon)
+    let result = playerVsAi(game.playerPokemon, game.aiPokemon);
+    scoreShow(game.playerPokemon, game.aiPokemon, result, whoWin);
+    endGame();
 }
 
 
