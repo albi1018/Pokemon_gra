@@ -40,13 +40,10 @@ body {
   flex-direction: column;
   margin-top: 1rem;
   width: 80vw;
-  @media (orientation: landscape) {
+  @media (orientation: landscape){
     flex-direction: row;
   }
-  @media (orientation: portrait) and (min-height: 800px) {
-    flex-direction: column;
-  }
-  @media (min-width: 800px) {
+  @media (min-width: 600px) {
     flex-direction: row;
     justify-content: space-between;
   }
@@ -65,9 +62,9 @@ body {
     .img {
       width: 35%;
       padding: 1rem 0;
-      //@media (min-width: 600px) {
-      //  width: 50%;
-      //}
+      @media (min-width: 600px) {
+        width: 50%;
+      }
       @media (min-width: 800px) {
         width: 80%;
       }

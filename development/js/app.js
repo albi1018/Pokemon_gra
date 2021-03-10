@@ -8,7 +8,6 @@ let store =  {
 }
 if (JSON.parse(localStorage.getItem("obj"))) {
     store = JSON.parse(localStorage.getItem("obj"));
-    console.log(store);
     document.querySelector("[data-sumary=number-games] span").textContent = store.numberOfGames;
     document.querySelector("[data-sumary=number-wins] span").textContent = store.wins;
     document.querySelector("[data-sumary=number-losses] span").textContent = store.losses;
@@ -100,12 +99,10 @@ function start() {
     let result = playerVsAi(game.playerPokemon, game.aiPokemon);
     scoreShow(game.playerPokemon, game.aiPokemon, result, whoWin);
     localStorage.setItem("obj", JSON.stringify(gameScore));
-    console.log("obj");
     endGame();
 
 }
 
 btn.addEventListener("click", start);
-
 pokemons.forEach(pokemon => pokemon.addEventListener("click", pokemonSelection));
 
