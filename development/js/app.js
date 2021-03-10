@@ -1,18 +1,30 @@
 const pokemons = document.querySelectorAll(".figure");
 const btn = document.querySelector(".start");
-
-const gameScore = {
+let store =  {
     numberOfGames: 0,
     wins: 0,
     draws: 0,
     losses: 0,
+}
+if (JSON.parse(localStorage.getItem("obj"))) {
+    store = JSON.parse(localStorage.getItem("obj"));
+    console.log(store);
+    document.querySelector("[data-sumary=number-games] span").textContent = store.numberOfGames;
+    document.querySelector("[data-sumary=number-wins] span").textContent = store.wins;
+    document.querySelector("[data-sumary=number-losses] span").textContent = store.losses;
+    document.querySelector("[data-sumary=number-draws] span").textContent = store.draws;
+}
+const gameScore = {
+    numberOfGames: store.numberOfGames,
+    wins: store.wins,
+    draws: store.draws,
+    losses: store.losses,
 }
 
 const game = {
     playerPokemon: "",
     aiPokemon: "",
 }
-
 
 function pokemonSelection() {
     game.playerPokemon = this.dataset.option
@@ -39,7 +51,6 @@ function aiSelection() {
 }
 
 function playerVsAi(player, ai) {
-    let result;
     if (player === "charmander" && ai === "bulbasaur" || player === "bulbasaur" && ai === "squirtle"
         || player === "squirtle" && ai === "charmander") {
         return "win"
@@ -54,7 +65,7 @@ function playerVsAi(player, ai) {
 function scoreShow(player, ai, result, whoWin) {
         document.querySelector("[data-sumary=your-choice] span").textContent = player.toUpperCase();
         document.querySelector("[data-sumary=ai-choice] span").textContent = ai.toUpperCase();
-        document.querySelector("[data-sumary=number-games] span").textContent = gameScore.numberOfGames;
+        document.querySelector("[data-sumary=number-games] span").textContent = gameScore.numberOfGames
     if (result === "win") {
         whoWin.textContent = "Victory".toUpperCase();
         whoWin.style.color = "green";
@@ -88,9 +99,11 @@ function start() {
     playerVsAi(game.playerPokemon, game.aiPokemon)
     let result = playerVsAi(game.playerPokemon, game.aiPokemon);
     scoreShow(game.playerPokemon, game.aiPokemon, result, whoWin);
+    localStorage.setItem("obj", JSON.stringify(gameScore));
+    console.log("obj");
     endGame();
-}
 
+}
 
 btn.addEventListener("click", start);
 
