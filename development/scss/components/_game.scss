@@ -40,8 +40,11 @@ body {
   flex-direction: column;
   margin-top: 1rem;
   width: 80vw;
-  @media (orientation: landscape){
+  @media (orientation: landscape) {
     flex-direction: row;
+  }
+  @media (orientation: portrait) and (min-height: 800px) {
+    flex-direction: column;
   }
   @media (min-width: 800px) {
     flex-direction: row;
